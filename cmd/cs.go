@@ -20,8 +20,9 @@ var (
 
 // csCmd represents the cs command
 var csCmd = &cobra.Command{
-	Use:   "cs",
-	Short: "A brief description of your command",
+	Use:     "cs",
+	Aliases: []string{"start"},
+	Short:   "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
@@ -39,10 +40,17 @@ to quickly create a Cobra application.`,
 			log.Fatalf("Plaese check TELE_TOKEN env variable. %s", err)
 			return
 		}
+
 		cs.Handle(telebot.OnText, func(m telebot.Context) error {
 			log.Print(m.Message().Payload, m.Text())
+			payload := m.Message().Payload
 
+			switch payload {
+			case "hello":
+				err = m.Send(fmt.Sprintf("Hello I'm csbot %s!", appVersion))
+			}
 			return err
+
 		})
 		cs.Start()
 	},
