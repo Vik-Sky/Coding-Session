@@ -1,4 +1,4 @@
-module github.com/den-vasyliev/kbot
+module github.com/Vik-Sky/Coding-Session
 
 go 1.19
 
