@@ -1,5 +1,5 @@
-APP := $(shell basename $(shell git remote get-url origin)) # Имя вашего приложения, извлеченное из URL удаленного репозитория Git
-REGISTRY := vitaliysazhevsky # Имя реестра Docker, в который будет выполняться сборка и пуш контейнера
+APP :=$(shell basename $(shell git remote get-url origin)) # Имя вашего приложения, извлеченное из URL удаленного репозитория Git
+REGISTRY :=Vik-Sky # Имя реестра Docker, в который будет выполняться сборка и пуш контейнера
 VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD) # Версия, созданная на основе последнего тега Git и хэша последнего коммита
 TARGETOS=linux # Целевая операционная система для сборки (linux, darwin, windows)
 TARGETARCH=arm64 # Целевая архитектура для сборки (amd64, arm64)
@@ -8,7 +8,7 @@ format:
 	gofmt -s -w ./ # Форматирование кода Go с помощью gofmt
 
 lint:
-	go lint # Проверка стиля кода с помощью golint
+	golint # Проверка стиля кода с помощью golint
 
 test:
 	go test -v # Запуск тестов Go
