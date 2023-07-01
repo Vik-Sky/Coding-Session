@@ -1,6 +1,6 @@
-APP :=$(shell basename $(shell git remote get-url origin) | tr '[:upper:]' '[:lower:]')
-# Имя вашего приложения, извлеченное из URL удаленного репозитория Git
-REGISTRY :=vik-sky
+APP :=csbot
+# Имя вашего приложения
+REGISTRY :=vitaliysazhevsky
 # Имя реестра Docker, в который будет выполняться сборка и пуш контейнера
 VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
 # Версия, созданная на основе последнего тега Git и хэша последнего коммита
@@ -38,7 +38,7 @@ image:
 # Передача аргумента TARGETARCH во время сборки с помощью --build-arg.
 
 push:
-	docker push ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH} 
+	docker push ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 # Загрузка Docker-образа в реестр Docker.
 
 clean:
