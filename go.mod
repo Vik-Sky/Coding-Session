@@ -1,6 +1,6 @@
 module github.com/vik-sky/coding-session
 
-go 1.20.5
+go 1.20
 
 require (
 	github.com/spf13/cobra v1.6.1
