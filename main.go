@@ -1,6 +1,6 @@
 package main
 
-import "github.com/Vik-Sky/Coding-Session/cmd"
+import "github.com/vik-sky/coding-session/cmd"
 
 func main() {
 	cmd.Execute()

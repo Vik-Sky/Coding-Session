@@ -1,8 +1,8 @@
-APP :=$(shell basename $(shell git remote get-url origin)) # Имя вашего приложения, извлеченное из URL удаленного репозитория Git
-REGISTRY :=Vik-Sky # Имя реестра Docker, в который будет выполняться сборка и пуш контейнера
-VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD) # Версия, созданная на основе последнего тега Git и хэша последнего коммита
-TARGETOS=linux # Целевая операционная система для сборки (linux, darwin, windows)
-TARGETARCH=arm64 # Целевая архитектура для сборки (amd64, arm64)
+APP :=$(shell basename $(shell git remote get-url origin))# Имя вашего приложения, извлеченное из URL удаленного репозитория Git
+REGISTRY :=vik-sky# Имя реестра Docker, в который будет выполняться сборка и пуш контейнера
+VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)# Версия, созданная на основе последнего тега Git и хэша последнего коммита
+TARGETOS=linux# Целевая операционная система для сборки (linux, darwin, windows)
+TARGETARCH=arm64# Целевая архитектура для сборки (amd64, arm64)
 
 format:
 	gofmt -s -w ./ # Форматирование кода Go с помощью gofmt
@@ -17,7 +17,7 @@ get:
 	go get # Установка зависимостей Go
 
 build: format get
-	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -v -o kbot -ldflags "-X 'github.com/Vik-Sky/Coding-Session/cmd.appVersion=${VERSION}'"
+	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -v -o kbot -ldflags "-X 'github.com/vik-sky/coding-session/cmd.appVersion=${VERSION}'"
 	# Сборка исполняемого файла Go с помощью go build. Установлены переменные среды для целевой ОС и архитектуры.
 	# Компиляция без использования CGO.
 	# Компиляция с флагом ldflags, чтобы установить версию приложения.
