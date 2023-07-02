@@ -1,4 +1,4 @@
-APP :=csbot
+APP :=$(shell basename $(shell git remote get-url origin) | tr '[:upper:]' '[:lower:]')
 # Имя вашего приложения
 REGISTRY :=vitaliysazhevsky
 # Имя реестра Docker, в который будет выполняться сборка и пуш контейнера
@@ -32,7 +32,7 @@ build: format get
 # Компиляция с флагом ldflags, чтобы установить версию приложения.
 
 image:
-	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}  --build-arg TARGETARCH=${TARGETARCH}
+	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 # Сборка Docker-образа. Используется Dockerfile из текущего каталога.
 # Установка тега образа на основе имени реестра, имени приложения, версии и целевой архитектуры.
 # Передача аргумента TARGETARCH во время сборки с помощью --build-arg.
