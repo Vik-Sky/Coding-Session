@@ -4,7 +4,7 @@
 replicaCount: 1
 image:
   repository: "vitaliysazhevsky"
-  tag: "v1.0.2-f9caaae"
+  tag: "v1.0.3-fed21dd-arm64helm"
   arch: amd64
 secret:
   name: "kbot"
