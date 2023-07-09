@@ -25,24 +25,24 @@ get:
 	go get 
 # Установка зависимостей Go
 
-build: format get
-	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -v -o kbot -ldflags "-X 'github.com/vik-sky/coding-session/cmd.appVersion=${VERSION}'"
 # Сборка исполняемого файла Go с помощью go build. Установлены переменные среды для целевой ОС и архитектуры.
 # Компиляция без использования CGO.
 # Компиляция с флагом ldflags, чтобы установить версию приложения.
+build:
+	go build -v -o kbot -ldflags "-X 'github.com/vik-sky/coding-session/cmd.appVersion=${VERSION}'"
 
-image:
-	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 # Сборка Docker-образа. Используется Dockerfile из текущего каталога.
 # Установка тега образа на основе имени реестра, имени приложения, версии и целевой архитектуры.
 # Передача аргумента TARGETARCH во время сборки с помощью --build-arg.
+image:
+	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 
+# Загрузка Docker-образа в реестр Docker.
 push:
 	docker push ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
-# Загрузка Docker-образа в реестр Docker.
 
-clean:
-	rm -rf kbot 
 # Удаление собранного исполняемого файла
-	docker rmi ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 # Удаление Docker-образа из локального репозитория
+clean:
+	rm -rf kbot
+	docker rmi ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
